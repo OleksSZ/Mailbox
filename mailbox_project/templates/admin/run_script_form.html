@@ -1,0 +1,114 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<div style="display: flex; gap: 20px; flex-wrap: wrap;">
+
+    <!-- Ліва частина: Форма запуску -->
+    <div style="flex: 1; min-width: 300px; max-width: 400px; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        <h2 style="margin-top: 0;">Налаштування генерації</h2>
+
+        <form method="POST" style="margin-bottom: 15px;">
+            {% csrf_token %}
+
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #333; font-size: 14px;">
+                    Країни реєстрації (можна обрати кілька):
+                </label>
+                <div style="max-height: 180px; overflow-y: auto; border: 1px solid #ccc; border-radius: 6px; padding: 10px; background-color: #fcfcfc; box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);">
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <label style="display: flex; align-items: center; font-size: 14px; color: #333; cursor: pointer;"><input type="checkbox" name="countries" value="AU" style="margin-right: 8px; width: 16px; height: 16px; cursor: pointer;"> Австралія (AU)</label>
+                        <label style="display: flex; align-items: center; font-size: 14px; color: #333; cursor: pointer;"><input type="checkbox" name="countries" value="CA" style="margin-right: 8px; width: 16px; height: 16px; cursor: pointer;"> Канада (CA)</label>
+                        <label style="display: flex; align-items: center; font-size: 14px; color: #333; cursor: pointer;"><input type="checkbox" name="countries" value="CH" style="margin-right: 8px; width: 16px; height: 16px; cursor: pointer;"> Швейцарія (CH)</label>
+                        <label style="display: flex; align-items: center; font-size: 14px; color: #333; cursor: pointer;"><input type="checkbox" name="countries" value="DK" style="margin-right: 8px; width: 16px; height: 16px; cursor: pointer;"> Данія (DK)</label>
+                        <label style="display: flex; align-items: center; font-size: 14px; color: #333; cursor: pointer;"><input type="checkbox" name="countries" value="FI" style="margin-right: 8px; width: 16px; height: 16px; cursor: pointer;"> Фінляндія (FI)</label>
+                        <label style="display: flex; align-items: center; font-size: 14px; color: #333; cursor: pointer;"><input type="checkbox" name="countries" value="IT" style="margin-right: 8px; width: 16px; height: 16px; cursor: pointer;"> Італія (IT)</label>
+                        <label style="display: flex; align-items: center; font-size: 14px; color: #333; cursor: pointer;"><input type="checkbox" name="countries" value="MX" style="margin-right: 8px; width: 16px; height: 16px; cursor: pointer;"> Мексика (MX)</label>
+                        <label style="display: flex; align-items: center; font-size: 14px; color: #333; cursor: pointer;"><input type="checkbox" name="countries" value="NL" style="margin-right: 8px; width: 16px; height: 16px; cursor: pointer;"> Нідерланди (NL)</label>
+                        <label style="display: flex; align-items: center; font-size: 14px; color: #333; cursor: pointer;"><input type="checkbox" name="countries" value="NO" style="margin-right: 8px; width: 16px; height: 16px; cursor: pointer;"> Норвегія (NO)</label>
+                        <label style="display: flex; align-items: center; font-size: 14px; color: #333; cursor: pointer;"><input type="checkbox" name="countries" value="NZ" style="margin-right: 8px; width: 16px; height: 16px; cursor: pointer;"> Нова Зеландія (NZ)</label>
+                        <label style="display: flex; align-items: center; font-size: 14px; color: #333; cursor: pointer;"><input type="checkbox" name="countries" value="PL" style="margin-right: 8px; width: 16px; height: 16px; cursor: pointer;"> Польща (PL)</label>
+                        <label style="display: flex; align-items: center; font-size: 14px; color: #333; cursor: pointer;"><input type="checkbox" name="countries" value="SE" style="margin-right: 8px; width: 16px; height: 16px; cursor: pointer;"> Швеція (SE)</label>
+                        <label style="display: flex; align-items: center; font-size: 14px; color: #333; cursor: pointer;"><input type="checkbox" name="countries" value="UK" style="margin-right: 8px; width: 16px; height: 16px; cursor: pointer;"> Велика Британія (UK)</label>
+                        <label style="display: flex; align-items: center; font-size: 14px; color: #333; cursor: pointer;"><input type="checkbox" name="countries" value="US" style="margin-right: 8px; width: 16px; height: 16px; cursor: pointer;"> США (US)</label>
+                        <label style="display: flex; align-items: center; font-size: 14px; color: #333; cursor: pointer;"><input type="checkbox" name="countries" value="FR" style="margin-right: 8px; width: 16px; height: 16px; cursor: pointer;"> Франція (FR)</label>
+                        <label style="display: flex; align-items: center; font-size: 14px; color: #333; cursor: pointer;"><input type="checkbox" name="countries" value="DE" style="margin-right: 8px; width: 16px; height: 16px; cursor: pointer;"> Німеччина (DE)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #333; font-size: 14px;">
+                    Кількість акаунтів (на кожну країну):
+                </label>
+                <input type="number" name="account_count" value="50" min="1" max="1000" style="width: 100%; height: 48px; padding: 0 12px; font-size: 15px; color: #333; border: 1px solid #ccc; border-radius: 6px; background-color: #fcfcfc; box-shadow: inset 0 1px 3px rgba(0,0,0,0.06); box-sizing: border-box;">
+            </div>
+
+            <button type="submit" style="width: 100%; background-color: #417690; color: white; padding: 14px; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 2px 4px rgba(65, 118, 144, 0.3);">
+                Запустити скрипт
+            </button>
+        </form>
+
+        <!-- Кнопка зупинки скрипта -->
+        <button type="button" onclick="stopScript()" style="width: 100%; background-color: #ba2121; color: white; padding: 14px; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 2px 4px rgba(186, 33, 33, 0.3);">
+            Зупинити скрипт
+        </button>
+    </div>
+
+    <!-- Права частина: Живий Термінал -->
+    <div style="flex: 2; min-width: 400px; background: #1e1e1e; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; flex-direction: column;">
+        <div style="background: #333; color: #aaa; padding: 10px 15px; border-top-left-radius: 8px; border-top-right-radius: 8px; font-family: monospace; font-size: 14px;">
+            >_ Живий лог виконання
+
+        <pre id="log-window" style="margin: 0; padding: 15px; color: #00ff00; background: transparent; height: 400px; overflow-y: auto; font-family: Consolas, monospace; font-size: 13px; line-height: 1.5; white-space: pre-wrap;"></pre>
+    </div>
+</div>
+
+<script>
+    // Функція для зупинки скрипта через асинхронний запит
+    function stopScript() {
+    // Правильно дістаємо CSRF-токен з існуючої форми на сторінці
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    fetch("{% url 'stop_script_view' %}", {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrfToken,
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log("Скрипт зупинено успішно");
+            fetchLogs(); // Одразу оновлюємо лог, щоб побачити напис "Генерацію зупинено"
+        } else {
+            console.error("Помилка при зупинці скрипта. Статус:", response.status);
+        }
+    })
+    .catch(error => console.error('Помилка мережі:', error));
+}
+
+    // Функція, яка завантажує логи з сервера
+    function fetchLogs() {
+        fetch("{% url 'get_script_logs' %}")
+            .then(response => response.text())
+            .then(data => {
+                const logWindow = document.getElementById('log-window');
+
+                if (logWindow.textContent !== data) {
+                    logWindow.textContent = data;
+                    logWindow.scrollTop = logWindow.scrollHeight;
+                }
+            })
+            .catch(error => console.error('Помилка завантаження логів:', error));
+    }
+
+    const isScriptRunning = "{{ script_running|yesno:'true,false' }}" === "true";
+
+    if (isScriptRunning) {
+        setInterval(fetchLogs, 1000);
+        fetchLogs();
+    } else {
+        fetchLogs();
+    }
+</script>
+{% endblock %}

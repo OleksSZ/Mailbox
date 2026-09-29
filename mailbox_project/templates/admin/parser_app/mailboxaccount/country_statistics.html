@@ -1,0 +1,34 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<div id="content-main">
+    <div class="module">
+        <table style="width: 100%; text-align: left; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th style="padding: 10px; border-bottom: 1px solid #ccc; background: #f8f8f8;">Країна</th>
+                    <th style="padding: 10px; border-bottom: 1px solid #ccc; background: #f8f8f8;">Імена (Всього)</th>
+                    <th style="padding: 10px; border-bottom: 1px solid #ccc; background: #f8f8f8;">Імена (Викор.)</th>
+                    <th style="padding: 10px; border-bottom: 1px solid #ccc; background: #f8f8f8;">Імена (Вільні)</th>
+                    <th style="padding: 10px; border-bottom: 1px solid #ccc; background: #f8f8f8;">Акаунти (Всього)</th>
+                    <th style="padding: 10px; border-bottom: 1px solid #ccc; background: #f8f8f8;">Акаунти (Викор.)</th>
+                    <th style="padding: 10px; border-bottom: 1px solid #ccc; background: #f8f8f8;">Акаунти (Вільні)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in stats %}
+                <tr>
+                    <td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>{{ row.country }}</strong></td>
+                    <td style="padding: 10px; border-bottom: 1px solid #eee;">{{ row.n_total }}</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #eee; color: #ba2121; font-weight: bold;">{{ row.n_used }}</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #eee; color: #417690; font-weight: bold;">{{ row.n_free }}</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #eee;">{{ row.a_total }}</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #eee; color: #ba2121; font-weight: bold;">{{ row.a_used }}</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #eee; color: #417690; font-weight: bold;">{{ row.a_free }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
